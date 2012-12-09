@@ -10,16 +10,15 @@
         overflowed = [],
         hasCallback = callback && typeof callback === 'function' ? true : false,
         status = false
-    this.options = options || {}
-    this.options.parentsTo = this.options.parentsTo || window
+    this.options = options || window
 
     this.each(function(){
       var $this = $(this)
       elPosition = $this.position()
       elWidth = $this.width()
       elHeight = $this.height()
-      var parents = $this.parentsUntil(self.options.parentsTo)
-      var $parentsTo = $(self.options.parentsTo)
+      var parents = $this.parentsUntil(self.options)
+      var $parentsTo = $(self.options)
       parents.push($parentsTo)
 
       for(var i=0; i<parents.length; i++){
@@ -36,7 +35,7 @@
         $(overflowed[i]).addClass('overflowed')
       }
 
-      if($this.parents(self.options.parentsTo).hasClass('overflowed')) $this.addClass('overflowing')
+      if($this.parents(self.options).hasClass('overflowed')) $this.addClass('overflowing')
     })
 
     if (!hasCallback) return overflowed.length > 1 ? overflowed : status
