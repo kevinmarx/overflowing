@@ -4,30 +4,42 @@
  * http://elvingrodriguez.com/overflowed
  *
  */
-(function($) {
-  $.fn.overflowing = function(callback) {
-    var $this = this,
-        $parent = $this.parent(),
-        $overflowed = [],
+(function($){
+  $.fn.overflowing = function(options, callback){
+    var self = this,
+        overflowed = [],
         hasCallback = callback && typeof callback === 'function' ? true : false,
-        status = false;
+        status = false
+    this.options = options || {}
+    this.options.parentsTo = this.options.parentsTo || window
 
-    $this.each(function() {
-  var $this = $(this);
-  elPosition = $this.position();
-  elWidth = $this.width();
-  elHeight = $this.height();
-  parentWidth = $parent.width();
-  parentHeight = $parent.height();
-  if ( elPosition.top < 0 || elPosition.left < 0 || elPosition.top > parentHeight || elPosition.left > parentWidth || elPosition.top + elHeight > parentHeight || elPosition.left + elWidth > parentWidth) {
-    status = true;
-    $overflowed.push($this);
-    if (hasCallback) callback($this);
-    }
-  });
+    this.each(function(){
+      var $this = $(this)
+      elPosition = $this.position()
+      elWidth = $this.width()
+      elHeight = $this.height()
+      var parents = $this.parentsUntil(self.options.parentsTo)
+      var $parentsTo = $(self.options.parentsTo)
+      parents.push($parentsTo)
 
-    if (!hasCallback) return $overflowed.length > 1 ? $overflowed : status;
-  };
-})(jQuery);
+      for(var i=0; i<parents.length; i++){
+        var parentWidth = $(parents[i]).width()
+        var parentHeight = $(parents[i]).height()
+        if ( elPosition.top < 0 || elPosition.left < 0 || elPosition.top > parentHeight || elPosition.left > parentWidth || elPosition.top + elHeight > parentHeight || elPosition.left + elWidth > parentWidth) {
+          status = true
+          overflowed.push(parents[i])
+          if (hasCallback) callback(parents[i])
+        }
+      }
 
-//TODO: add options to set scope of how far up the DOM this script will search for the element overflowing parents.
+      for(var i=0; i<overflowed.length; i++){
+        $(overflowed[i]).addClass('overflowed')
+      }
+
+      if($this.parents(self.options.parentsTo).hasClass('overflowed')) $this.addClass('overflowing')
+    })
+
+    if (!hasCallback) return overflowed.length > 1 ? overflowed : status
+  }
+
+})(jQuery)
