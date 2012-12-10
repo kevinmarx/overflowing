@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Overflowing by kevinmarx</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/kevinmarx/overflowing">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/kevinmarx/overflowing/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/kevinmarx/overflowing/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Overflowing</h1>
+          <p>A small jQuery plugin that checks if an element is overflowing.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/kevinmarx">kevinmarx</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>Overflowing.js</h1>
+
+<p>A small jQuery plugin that traverses up the dom and checks to see if it is overflowing any of its parent elements.</p>
+
+<h2>Getting Started</h2>
+
+<p>Include jQuery and the plugin on a page. Then select an element and call the <code>overflowing</code> method, optionally passing in a limiting element and a callback function.
+By default overflowing will traverse the dom up to and including the <code>window</code>. You can optionally pass in a parent element
+in which Overflowing.js will stop at and include in the calculations.</p>
+
+<p>If you are using the callback function you can use the <code>overflowed</code> argument to get the element being overflowed.
+The callback is fired for each element that is overflowed.</p>
+
+<div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"parentElement"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"middleElement"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"targetElement"</span><span class="nt">&gt;&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span> 
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.overflowing.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'.targetElement'</span><span class="p">).</span><span class="nx">overflowing</span><span class="p">(</span><span class="s1">'.parentElement'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">overflowed</span><span class="p">){</span> 
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This element is being overflowed'</span><span class="p">,</span> <span class="nx">overflowed</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+
+<p>This setup will check if <code>.targetElement</code> is overflowing any of its parents up to and including <code>.parentElement</code>.</p>
+
+<h2>License</h2>
+
+<p>Copyright © 2012 Kevin Marx
+Licensed under the MIT license.</p>
+
+<p>Based on Elving Rodriguez's Overflowed
+<a href="http://elvingrodriguez.com/overflowed">http://elvingrodriguez.com/overflowed</a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
