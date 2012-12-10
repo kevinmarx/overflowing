@@ -28,6 +28,7 @@ The callback is fired for each element that is overflowed.
   </script>
 </body>
 ```
+This setup will check if `.targetElement` is overflowing any of its parents up to and including `.parentElement`.
 
 ## License
 Copyright © 2012 Kevin Marx
