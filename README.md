@@ -22,13 +22,13 @@ The callback is fired for each element that is overflowed.
   <script src="jquery.js"></script>
   <script src="jquery.overflowing.js"></script>
   <script>
-    $('.targetElement').overflowing('.parentElement', function(overflowed){ 
+    $('.targetElement').overflowing('.parentElement', function(overflowed) { 
       console.log('This element is being overflowed', overflowed)
     })
   </script>
 </body>
 ```
-This setup will check if `.targetElement` is overflowing any of its parents up to and including `.parentElement`.
+This setup will check if `.targetElement` is overflowing any of its parents up to and including `.parentElement` and logging all the elements it overflows in the callback.
 
 ## License
 Copyright © 2012 Kevin Marx
