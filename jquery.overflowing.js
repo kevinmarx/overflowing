@@ -22,15 +22,21 @@
       parents.push($parentsTo)
 
       for(var i=0; i<parents.length; i++){
-        var parentPosition = $(parents[i]).position()
-        var parentWidth = $(parents[i]).width()
-        var parentHeight = $(parents[i]).height()
-        if ( elPosition.top<0
-        || elPosition.left<0
-        || elPosition.top>(parentHeight+parentPosition.top)
-        || elPosition.left>(parentWidth+parentPosition.left)
-        || (elPosition.top + elHeight) > (parentHeight+parentPosition.top)
-        || (elPosition.left+elWidth) > (parentWidth+parentPosition.left)){
+        var $parent = $(parents[i])
+        if ($.isWindow($parent[0])) break
+        var absPosition = !!~['absolute', 'fixed'].indexOf($parent.css('position'))
+        var parentPosition = $parent.position()
+        var parentWidth = $parent.width()
+        var parentHeight = $parent.height()
+        var parentToBottom = absPosition ? parentHeight : (parentHeight+parentPosition.top)
+        var parentToRight = absPosition ? parentWidth : (parentWidth+parentPosition.left)
+
+        if ( elPosition.top < 0
+        || elPosition.left < 0
+        || elPosition.top > parentToBottom
+        || elPosition.left > parentToRight
+        || (elPosition.top + elHeight) > parentToBottom
+        || (elPosition.left + elWidth) > parentToRight) {
           status = true
           $(parents[i]).addClass('overflowed')
           overflowed.push(parents[i])
