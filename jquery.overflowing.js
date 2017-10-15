@@ -13,6 +13,7 @@
     this.options = options || window
 
     this.each(function(){
+      if ($.isWindow(this)) return false
       var $this = $(this)
       elPosition = $this.position()
       elWidth = $this.width()
